@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,22 +21,23 @@ public class UserController {
         this.userService = userService;
     }
  @GetMapping("/")
-    public String loginPage(Model model){
-        UserDto user = new UserDto();
-        model.addAttribute(user);
-        return "login";
+    public ModelAndView loginPage(){
+     ModelAndView  model = new ModelAndView();
+     model.setViewName("register");
+     model.addObject("user", new UserDto());
+        return model;
  }
- @GetMapping("/registration")
+ @GetMapping("/register")
  public String signUpPage(ModelAndView model){
         model.addObject("user", new UserDto());
-        return "registration";
+        return "register";
  }
 @PostMapping("/register")
 public  String registerUser(@ModelAttribute("user") UserDto userDto, HttpServletRequest request){
         User user = userService.saveUser(userDto);
         if(user == null){
             request.setAttribute("status", "failed");
-            return "registration";
+            return "register";
         }
         request.setAttribute("status", "success");
         return "login";
