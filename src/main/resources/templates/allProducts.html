@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
+<!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+<!------ Include the above in your HEAD tag ---------->
+
+<head>
+    <title>Products</title>
+    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons}">
+    <link rel="stylesheet" th:href="@{https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css}" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous}">
+    <link th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons}">
+    <link rel="stylesheet" th:href="@{/css/category.css}"/>
+    <th:block th:replace="includes/head :: head"></th:block>
+</head>
+<body style="background-color: #1a2530">
+<th:block th:replace="includes/adminHeader :: html"></th:block>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Products</h4>
+            <a class="btn btn-success d-inline-block" th:href="@{/products/add}">
+                <i class="bi bi-plus-circle-fill"></i>Add a Product</a>
+        </div>
+        <div class="col-lg-8 col-md-10 ml-auto mr-auto">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="text-center">SN</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Preview</th>
+                        <th>Image</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product, in:${products}">
+                        <td class="text-center" th:text="${in.index + 1}">1</td>
+                        <td th:text="${product.product_name}"></td>
+                        <td th:text="${product.category.name}"></td>
+                        <td th:text="${product.description}"></td>
+                        <td ><img th:src="@{${product.imageName}}" th:style="'width: 40px; height: 40px;'"/>
+                        </td>
+                        <td class="text-right">
+                            <a class="btn btn-success btn-just-icon btn-sm d-inline-block" th:href="@{/admin/edit/{id}(id=${product.getProduct_id()})}">
+                                <i class="bi bi-plus-circle-fill"></i>Edit</a>
+                        </td>
+                        <td class="td-actions text-right">
+                            <a class="btn btn-danger d-inline-block" th:href="@{/admin/delete/{id}(id=${product.getProduct_id()})}">
+                                <i class="bi bi-plus-circle-fill"></i>Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:replace="includes/pageFooter :: footer"></th:block>
+</body>
+</html>
+

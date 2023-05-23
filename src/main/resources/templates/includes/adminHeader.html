@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{../../static/css/home-style.css}">
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+    <script th:src="'https://kit.fontawesome.com/a076d05399.js'"></script>
+    <style>
+        a{
+            color: cornflowerblue;
+            padding-left: 30px;
+        }
+    </style>
+</head>
+<!--Header-->
+<br>
+<div class="topnav sticky">
+
+    <h2 style="color: white;">E-Store</h2>
+    <a th:href="@{/products/add}">Add New Product <i class='fas fa-plus-square'></i></a>
+    <a th:href="@{/admin/categories}">Categories <i class='fas fa-plus-square'></i></a>
+    <a th:href="@{/allProducts}">All Products <i class='fab fa-elementor'></i></a>
+    <a href="/logout">Log out <i class='fas fa-share-square'></i></a>
+</div>
+<br>
+</html>
+<!--table-->

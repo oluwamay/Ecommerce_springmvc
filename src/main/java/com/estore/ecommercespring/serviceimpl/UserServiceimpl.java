@@ -6,6 +6,7 @@ import com.estore.ecommercespring.repository.UserRepository;
 import com.estore.ecommercespring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.mindrot.jbcrypt.BCrypt;
 
 @Service
 public class UserServiceimpl implements UserService {
@@ -23,18 +24,24 @@ public class UserServiceimpl implements UserService {
         if(userDto == null){
             return null;
         }else {
-            User user = User.builder()
-                    .firstName(userDto.getFirstName())
-                    .lastName(userDto.getLastName())
-                    .email(userDto.getUserEmail())
-                    .password(userDto.getPassword())
-                    .build();
+
+            User user = new User(
+                    userDto.getFirstName(),
+                    userDto.getLastName(),
+                    userDto.getPassword(),
+                    userDto.getUserEmail()
+            );
+
             return userRepository.save(user);
         }
     }
 
-    public User authenticate(String email, String password){
-        User user = userRepository.findUserByEmailAndPassword(email, password).get();
-        return user;
+    public User authenticate(UserDto userDTO){
+        User user = userRepository.findUserByEmail(userDTO.getUserEmail()).get();
+        boolean check = user.checkPassword(userDTO.getPassword(), user.getPassword());
+        if(check){
+            return user;
+        }
+        return null;
     }
 }

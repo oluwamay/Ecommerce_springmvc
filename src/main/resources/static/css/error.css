@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.error-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-top: 0;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+a {
+    color: #008CBA;
+    text-decoration: none;
+}

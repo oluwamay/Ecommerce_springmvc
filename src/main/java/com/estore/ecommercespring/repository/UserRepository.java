@@ -3,10 +3,10 @@ package com.estore.ecommercespring.repository;
 import com.estore.ecommercespring.dto.UserDto;
 import com.estore.ecommercespring.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-
+@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findUserByEmailAndPassword(String email, String Password);
-
+    Optional<User> findUserByEmail(String email);
 }

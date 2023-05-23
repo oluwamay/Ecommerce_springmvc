@@ -5,6 +5,6 @@ import com.estore.ecommercespring.model.User;
 
 public interface
 UserService {
-    User authenticate(String email, String password);
+    User authenticate(UserDto user);
    User saveUser(UserDto userDto);
 }

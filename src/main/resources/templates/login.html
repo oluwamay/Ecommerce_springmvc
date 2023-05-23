@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<input type="hidden" id="status" th:value="${status}">
+
 	<div class="main">
 
 		<!-- Sing in  Form -->
@@ -30,18 +30,20 @@
 					</div>
 
 					<div class="signin-form">
-						<h2 class="form-title">Sign in</h2>
+						<h2 class="form-title">Online Store</h2>
+						<h4 class="form-title">Sign in</h4>
 
 
 						<form role="form" method="post" th:action="@{/login}" th:object="${user}" class="register-form" id="login-form">
 							<div class="form-group">
 								<label for="email"><i class="zmdi zmdi-email"></i></label>
-								<input type="email" name="email" th:field="*{userEmail}" id="email" placeholder="Your Email" required/>
+								<input type="email" name="userEmail" th:field="*{userEmail}" id="email" placeholder="Your Email" required/>
+
 							</div>
 							<div class="form-group">
-								<label for="password"><i class="zmdi zmdi-lock"></i></label> <input
-									type="password" name="password" th:field="*{password}" id="password"
-									placeholder="Password" />
+								<label for="password"><i class="zmdi zmdi-lock"></i></label>
+								<input type="password" name="password" th:field="*{password}" id="password" placeholder="Password"/>
+
 							</div>
 							<div class="form-group">
 								<input type="checkbox" name="remember-me" id="remember-me"
@@ -73,21 +75,6 @@
 
 	</div>
 
-	<!-- JS -->
-	<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
-	<script th:src="@{../static/static/main.js}"></script>
-<script th:src="@{https://unpkg.com/sweetalert/dist/sweetalert.min.js}"></script>
-<link rel="stylesheet" th:href="@{alert/dist/sweetalert.css}">
-<script th:inline="javascript">
-	/*<![CDATA[*/
-	const status = /*[[${status}]]*/ null;
-	if(status === "failed"){
-		swal("Sorry","you entered a wrong password or email", "error");
-	}
-	/*]]>*/
-</script>
-
 
 </body>
-<!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

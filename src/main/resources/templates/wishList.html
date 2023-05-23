@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>cart</title>
+    <link rel="stylesheet" th:href="@{/css/cart.css}"/>
+    <link th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css}" rel=stylesheet>
+    <link th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/index-styles.css}" />
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="https://st2.depositphotos.com/8299646/11075/v/950/depositphotos_110753186-stock-illustration-online-shop-online-store-logo.jpg" height="70" alt="">
+            </a>
+
+
+            <!-- Navbar items -->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/wishList">
+                            <i class="fas fa-heart me-1"></i> Wishlist
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart">
+                            <i class="fas fa-shopping-cart me-1"></i> My cart
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <i class="fas fa-user-alt me-1"></i> Sign out
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-md-9">
+
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <span class="pull-right">(<strong th:text="${wishItemsCount}"></strong>) items</span>
+                        <h2>Items in your wishList</h2>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="table-responsive">
+                            <table class="table shoping-cart-table">
+                                <tbody>
+                                <tr th:each="product: ${wishItems}">
+                                    <td width="90">
+                                        <div class="cart-product-imitation">
+                                        </div>
+                                    </td>
+                                    <td class="desc">
+                                        <h3 th:text="${product.product_name}"></h3>
+                                        <p th:text="${product.description}" class="small"></p>
+                                        <div class="m-t-sm">
+                                            <a th:href="@{/addToCart/{id}(id=${product.product_id})}" class="btn btn-primary shadow-0 me-1">Add to cart</a>
+                                            |
+                                            <a href="#" class="text-muted"><i class="fa fa-trash"></i> Remove item</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h4 th:text="${product.price}"></h4>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <button onclick="window.location.href='/index'" class="btn btn-white"><i class="fa fa-arrow-left"></i> Continue shopping</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

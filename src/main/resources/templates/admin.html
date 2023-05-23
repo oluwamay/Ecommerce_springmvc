@@ -1,10 +1,26 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Admin home</title>
+    <th:block th:replace="includes/head :: head"></th:block>
+    <style>
+        h1
+        {
+            color: white;
+            text-align: center;
+            font-size: 100px;
+        }</style>
 </head>
 <body>
+<th:block th:replace="includes/adminHeader :: html"></th:block>
 <h1>Hello Admin</h1>
+<h2>Add Products, Edit and Provide great customer service...</h2>
+<th:block th:replace="includes/pageFooter :: footer"></th:block>
+
 </body>
 </html>
+
+
+

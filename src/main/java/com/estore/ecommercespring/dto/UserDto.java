@@ -1,15 +1,15 @@
 package com.estore.ecommercespring.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@Builder
 public class UserDto {
     private String firstName;
     private String lastName;
-    private String password;
     private String userEmail;
+    private String password;
 }
